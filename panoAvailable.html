@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <title></title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        #street-view {
+            height: 100%;
+        }
+        
+        .infomsg {display:none;}
+    </style>
+</head>
+<body>
+    <div id="street-view"></div>
+    <script>
+        var lat_param = gup('lat');
+        var long_param = gup('long');
+        var width_param = gup('width');
+        var height_param = gup('height');
+        var heading_param = gup('heading');
+        var pitch_param = gup('pitch');
+        var zoom_param = gup('zoom');
+        var panorama;
+        function initialize() {
+            var posLatLon = { lat: filterFloat(lat_param), lng: filterFloat(long_param) };
+            var querypov = {pitch:0};
+
+            if (zoom_param != '') {
+                var z = filterInt(zoom_param);
+                if (!isNaN(z)) {
+                    querypov.zoom = z;
+                }
+            }
+
+            if (heading_param != '') {
+                var h = filterFloat(heading_param);
+                if (!isNaN(h)) {
+                    querypov.heading = h;
+                }
+            }
+
+            if (pitch_param != '') {
+                var p = filterFloat(pitch_param);
+                if (!isNaN(p)) {
+                    querypov.pitch = p;
+                }
+            }
+
+            panorama = new google.maps.StreetViewPanorama(document.getElementById('street-view'),
+            {
+                position: posLatLon,
+                pov: querypov,
+                zoom: 1,
+                imageDateControl: true
+            });
+
+            var sv = new google.maps.StreetViewService();
+            sv.getPanoramaByLocation(posLatLon, 50, function(data) {
+                window.external.GetImageData(data.imageDate);
+           });
+        }
+
+
+        
+
+        function filterInt(value) {
+            if (/^(\-|\+)?([0-9]+|Infinity)$/.test(value))
+                return Number(value);
+            return NaN;
+        }
+
+        function filterFloat(value) {
+            if (/^(\-|\+)?([0-9]+(\.[0-9]+)?|Infinity)$/
+              .test(value))
+                return Number(value);
+            return NaN;
+        }
+
+        function gup(name) {
+            name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+            var regexS = "[\\?&]" + name + "=([^&#]*)";
+            var regex = new RegExp(regexS);
+            var results = regex.exec(window.location.href);
+            if (results == null)
+                return "";
+            else
+                return results[1];
+        }
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key={MY_KEY}&callback=initialize">
+    </script>
+</body>
+</html>
