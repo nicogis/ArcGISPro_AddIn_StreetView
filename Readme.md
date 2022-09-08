@@ -8,6 +8,7 @@
 
 - No hosted page ([download release](https://github.com/nicogis/ArcGISPro_AddIn_StreetView/releases/download/v3.0/PAMStreetView.esriAddinX))
 	- set url ({0} -> long and {1} -> lat) and pageHosted = false in Globals.cs
+	- rebuild project in Visual Studio 2022
 
 
 ## Requirements
