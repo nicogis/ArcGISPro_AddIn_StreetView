@@ -1,13 +1,13 @@
 ﻿# ArcGIS Pro StreetView Addin
 - Hosted page
 	- Host panoAvailable.html in your web server
-	- set url of panoAvailable.html and pageHosted = true in Globals.cs
+	- set custom url of panoAvailable.html in variable UrlPanoAvailable and pageHosted = true in Globals.cs
 	- create api key google with referer url of panoAvailable.html
 	- set api key google in panoAvailable.html
 	- rebuild project in Visual Studio 2022
 
 - No hosted page ([download release](https://github.com/nicogis/ArcGISPro_AddIn_StreetView/releases/download/v3.0/PAMStreetView.esriAddinX))
-	- set url ({0} -> long and {1} -> lat) and pageHosted = false in Globals.cs
+	- set url google ({0} -> long and {1} -> lat) and pageHosted = false in Globals.cs
 	- rebuild project in Visual Studio 2022
 
 
