@@ -83,18 +83,27 @@
                 return;
             }
 
-            UriBuilder uriBuilder = new UriBuilder(new Uri(Globals.UrlPanoAvailable));
+            
+            
+            if (Globals.pageHosted)
+            {
+                UriBuilder uriBuilder = new UriBuilder(new Uri(Globals.UrlPanoAvailable));
 
-            StringBuilder sb = new StringBuilder();
-            sb.AppendFormat("lat={0}", this.currentY.ToString(CultureInfo.InvariantCulture));
-            sb.Append('&');
-            sb.AppendFormat("long={0}", this.currentX.ToString(CultureInfo.InvariantCulture));
-            sb.Append('&');
-            sb.AppendFormat("width={0}", this.WbWidth - 18);
-            sb.Append('&');
-            sb.AppendFormat("height={0}", this.WbHeight - 16);         
-            uriBuilder.Query = sb.ToString();
-            this.WebAddress = uriBuilder.Uri.ToString();
+                StringBuilder sb = new StringBuilder();
+                sb.AppendFormat("lat={0}", this.currentY.ToString(CultureInfo.InvariantCulture));
+                sb.Append('&');
+                sb.AppendFormat("long={0}", this.currentX.ToString(CultureInfo.InvariantCulture));
+                sb.Append('&');
+                sb.AppendFormat("width={0}", this.WbWidth - 18);
+                sb.Append('&');
+                sb.AppendFormat("height={0}", this.WbHeight - 16);
+                uriBuilder.Query = sb.ToString();
+                this.WebAddress = uriBuilder.Uri.ToString();
+            }
+            else
+            {
+                this.WebAddress = string.Format(Globals.UrlPanoAvailable, this.currentX.ToString(CultureInfo.InvariantCulture), this.currentY.ToString(CultureInfo.InvariantCulture));
+            }
         }
 
     }
