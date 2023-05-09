@@ -65,9 +65,6 @@
     <Content Include="Images\DockPanelStreetView16.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="panoAvailable.html" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Readme.md" />
     <None Include=".gitattributes" />
     <None Include=".gitignore" />
