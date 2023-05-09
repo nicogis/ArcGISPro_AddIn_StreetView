@@ -3,9 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
-             mc:Ignorable="d"
+			 xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:extensions="clr-namespace:ArcGIS.Desktop.Extensions;assembly=ArcGIS.Desktop.Extensions"
+             xmlns:frameworkControls="clr-namespace:ArcGIS.Desktop.Framework.Controls;assembly=ArcGIS.Desktop.Framework"
              xmlns:local="clr-namespace:PAMStreetView"
+             mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -17,8 +19,8 @@
     <Grid>
 
         <DockPanel LastChildFill="true" KeyboardNavigation.TabNavigation="Local"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            
-            <wv2:WebView2 Name="wbStreetView" Source="{Binding WebAddress}" local:SizeObserver.Observe="True" local:SizeObserver.ObservedWidth="{Binding WbWidth, Mode=OneWayToSource}" local:SizeObserver.ObservedHeight="{Binding WbHeight, Mode=OneWayToSource}"  />
+
+            <frameworkControls:WebViewBrowser Name="wbStreetView" Source="{Binding WebAddress}" local:SizeObserver.Observe="True" local:SizeObserver.ObservedWidth="{Binding WbWidth, Mode=OneWayToSource}" local:SizeObserver.ObservedHeight="{Binding WbHeight, Mode=OneWayToSource}" />
 
         </DockPanel>
         
