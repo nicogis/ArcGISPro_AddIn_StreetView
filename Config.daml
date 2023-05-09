@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArcGIS defaultAssembly="PAMStreetView.dll" defaultNamespace="PAMStreetView" xmlns="http://schemas.esri.com/DADF/Registry" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schemas.esri.com/DADF/Registry file:///C:/Program%20Files/ArcGIS/Pro/bin/ArcGIS.Desktop.Framework.xsd">
+  <AddInInfo id="{98170489-e303-450e-9dce-6bdfa6df5614}" version="1.0.0" desktopVersion="3.1.41833">
+    <Name>StreetView</Name>
+    <Description>StreetView</Description>
+    <Image>Images\AddinDesktop32.png</Image>
+    <Author>nicogis</Author>
+    <Company>Studio A&amp;T s.r.l.</Company>
+    <Date>09/05/2023</Date>
+    <Subject>Map Exploration</Subject>
+    <!-- Note subject can be one or more of these topics:
+                    Content, Framework, Editing, Geodatabase, Geometry, Geoprocessing, Layouts, Map Authoring, Map Exploration -->
+  </AddInInfo>
+  <modules>
+    <insertModule id="PAMStreetView_Module" className="PAMStreetViewModule" autoLoad="false" caption="Module Street View">
+      <!-- uncomment to have the control hosted on a separate tab-->
+      <tabs>
+        <!--<tab id="PAMStreetView_Tab1" caption="New Tab">
+          <group refID="PAMStreetView_Group1"/>
+        </tab>-->
+      </tabs>
+      <groups>
+        <!-- comment this out if you have no controls on the Addin tab to avoid
+              an empty group-->
+        <group id="PAMStreetView_GrpStreetView" caption="Street View" keytip="CRTL" appearsOnAddInTab="true">
+          <!-- host controls within groups -->
+          <button refID="PAMStreetView_DStreetView_ShowButton" size="large" />
+          <tool refID="PAMStreetView_MapToolStreetView" size="large" />
+        </group>
+      </groups>
+      <controls>
+        <!-- add your controls here -->
+        <button id="PAMStreetView_DStreetView_ShowButton" caption="Show Window" keytip="S" className="DStreetView_ShowButton" loadOnClick="true" largeImage="Images\DockPanelStreetView32.png" smallImage="Images\DockPanelStreetView16.png">
+          <tooltip heading="Show Window">Show Street View Window<disabledText /></tooltip>
+        </button>
+        <tool id="PAMStreetView_MapToolStreetView" caption="Identify" keytip="I" className="MapToolStreetView" loadOnClick="true" smallImage="Images\ToolStreetView16.png" largeImage="Images\ToolStreetView32.png" condition="esri_mapping_mapPane">
+          <tooltip heading="Identify">Street View Identify<disabledText /></tooltip>
+        </tool>
+      </controls>
+      <dockPanes>
+        <dockPane id="PAMStreetView_DStreetView" caption="StreetView " className="DStreetViewViewModel" dock="group" dockWith="esri_core_contentsDockPane">
+          <content className="DStreetViewView" />
+        </dockPane>
+      </dockPanes>
+		
+    </insertModule>
+  </modules>
+	<propertySheets>
+		<updateSheet refID="esri_core_optionsPropertySheet">
+			<insertPage id="esri_sdk_PropertyPageAppSettings_PAMStreetView" caption="StreetView" className="ApplicationSettingsViewModel" group="Application">
+				<content className="ApplicationSettingsView" />
+			</insertPage>
+		</updateSheet>
+	</propertySheets>
+</ArcGIS>
